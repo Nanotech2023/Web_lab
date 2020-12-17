@@ -68,40 +68,25 @@ function getIDsFromStorage() {
     return cities.join(`,`);
 }
 
-async function onBtnAddClick() {
-    const val = inputAdd.value
-    inputAdd.disabled = true
-    inputAdd.value = 'Загрузка...'
-    try {
-        state.starred = [...state.starred, {loading:true}]
-        const data = await api.weatherByString(val)
-        state.starred.pop()
-        if(state.starred.map(_=>_.id).includes(data.id)) {
-            inputAdd.disabled = false
-            inputAdd.value = ''
-            state.starred = [...state.starred]
-            return alert('Такой город уже есть!')
-        }
-        saveCityToLS(data.id)
-        state.starred = [...state.starred, weatherMapper(data)]
-    } catch(err) {
-        alert('У нас определенно что-то сломалось(')
-        state.starred = [...state.starred]
-        console.error(err)
-    }
-    inputAdd.disabled = false
-    inputAdd.value = ''
-}
-function onRemoveClick(id) {
-    state.starred = state.starred.filter(_=>_.id !== parseInt(id, 10))
-    removeCityFromLS(id)
+function getCitiesFromStorage() {
+    return JSON.parse(localStorage.getItem(`favoriteCities`));
 }
 
-function mainFunc() {
-    btnAdd.addEventListener('click', onBtnAddClick)
-    addListener('current', renderBlockMain)
-    addListener('starred', renderBlocksExtra)
-    initCurrentPosition()
+function setCitiesInStorage(arr) {
+    localStorage.setItem(`favoriteCities`, JSON.stringify(arr));
+}
+
+function addCityInStorage(id) {
+    const cities = getCitiesFromStorage();
+    cities.push(id)
+
+    setCitiesInStorage(cities);
+}
+
+function removeCityFromStorage(id) {
+    const cities = getCitiesFromStorage();
+
+    setCitiesInStorage(cities.filter((city) => city !== Number(id)));
 }
 
 function getDataByIDs() {
