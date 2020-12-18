@@ -2,8 +2,8 @@ const ENDPOINT = `https://api.openweathermap.org/data/2.5/`;
 const TOKKEN = `d136e52c1f0eee76445085fa375a3f40`;
 
 const DEFAULT_COORDS = {
-    latitude: 59.851279,
-    longitude: 30.377274
+    latitude: 55.752503,
+    longitude: 37.619244
 }
 
 const localStorage = window.localStorage;
