@@ -9,17 +9,19 @@
   <title>Weather WIP</title>
 </head>
 <body>
-  <h1 class="visually-hidden">Прогноз погоды</h1>
-  <main class="container">
-
-    <section class="local">
-      <div class="local__refresh refresh">
-        <h2 class="refresh__heading">Погода здесь</h2>
-        <button class="refresh__button refresh__button-text" type="button">Обновить геолокацию</button>
-      </div>
+  <header  class="weather-block_container weather-block_container__header_current">
+      <h1 class="visually-hidden">Прогноз погоды</h1>
+      <section class="local">
+          <div class="local__refresh refresh">
+              <h2 class="refresh__heading">Погода здесь</h2>
+              <button class="refresh__button refresh__button-text" type="button">Обновить геолокацию</button>
+          </div>
       
-      <b>Loading...</b>
-    </section>
+          <b>Loading...</b>
+      </section>      
+  </header >
+  
+  <main class="container">
 
     <section class="favorites">  
       <div class="favorites__header">
