@@ -375,32 +375,21 @@ function formHandler() {
     })
 }
 
-function deleteHandler () {
-  const favoritesBoardElement = document.querySelector(`.favorites__list`);
+function deleteHandler() {
+    const favoritesBoardElement = document.querySelector(`.favorites__list`);
 
-  favoritesBoardElement.addEventListener(`click`, (evt) => {
-    evt.preventDefault();
+    favoritesBoardElement.addEventListener(`click`, (evt) => {
+        evt.preventDefault();
 
-    if (evt.target.tagName === `BUTTON`) {
-      evt.target.disabled = true;
+        if (evt.target.tagName === `BUTTON`) {
+            removeCityFromStorage(evt.target.dataset.id);
+            evt.target.parentNode.parentNode.remove();
 
-      removeCityFromStorage(evt.target.dataset.id)
-        .then((count) => {
-          evt.target.parentNode.parentNode.remove();
-
-          if (!Number(count)) {
-            isFavoritesEmpty = true;
-            favoritesBoardElement.innerHTML = `<b>Нет избранных городов.</b>`;
-          }
-
-          evt.target.disabled = false;
-        })
-        .catch(() => {
-          alert(`Что-то пошло не так. Пожалуйста, попробуйте снова.`);
-          evt.target.disabled = false;
-        });
-    }
-  });
+            if (isStorageEmpty()) {
+                favoritesBoardElement.innerHTML = `<b>Нет избранных городов.</b>`;
+            }
+        }
+    });
 }
 
 function addHandlers() {
