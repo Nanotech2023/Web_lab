@@ -12,11 +12,10 @@ html = `<!DOCTYPE html>
 </head>
 <body>
   <main class="container">
-    <h1 class="visually-hidden">Прогноз погоды</h1>
 
     <section class="local">
       <div class="local__refresh refresh">
-        <h2 class="refresh__heading">Погода здесь</h2>
+        <h1 class="refresh__heading">Погода здесь</h1>
         <button class="refresh__button refresh__button-text" type="button">Обновить геолокацию</button>
       </div>
       
